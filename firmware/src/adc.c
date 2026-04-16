@@ -5,7 +5,8 @@
 #include "adc.h"
 #include <avr/io.h>
 
-void adc_init(void) {
+void adc_init(void)
+{
     /* AVCC reference, right-adjusted result */
     ADMUX = (1 << REFS0);
     /* Enable ADC, prescaler /128 for 16MHz -> 125kHz ADC clock */
@@ -14,10 +15,13 @@ void adc_init(void) {
     DIDR0 = 0xFF;
 }
 
-uint16_t adc_read_raw(pin_id_t id) {
-    if (id >= PIN_COUNT) return 0xFFFF;
+uint16_t adc_read_raw(pin_id_t id)
+{
+    if (id >= PIN_COUNT)
+        return 0xFFFF;
     uint8_t ch = pin_table[id].adc_channel;
-    if (ch == 0xFF) return 0xFFFF;
+    if (ch == 0xFF)
+        return 0xFFFF;
 
     /* Select channel, keep AVCC reference */
     ADMUX = (1 << REFS0) | (ch & 0x07);
@@ -33,12 +37,14 @@ uint16_t adc_read_raw(pin_id_t id) {
     while (ADCSRA & (1 << ADSC))
         ;
 
-    return ADC;  /* reads ADCL then ADCH */
+    return ADC; /* reads ADCL then ADCH */
 }
 
-uint16_t adc_read_mv(pin_id_t id) {
+uint16_t adc_read_mv(pin_id_t id)
+{
     uint16_t raw = adc_read_raw(id);
-    if (raw == 0xFFFF) return 0xFFFF;
+    if (raw == 0xFFFF)
+        return 0xFFFF;
     /* (raw * 5000) / 1023 — use 32-bit intermediate to avoid overflow */
     return (uint16_t)(((uint32_t)raw * 5000UL) / 1023UL);
 }

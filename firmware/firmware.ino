@@ -9,4 +9,4 @@ extern "C" void gt_setup(void);
 extern "C" void gt_loop(void);
 
 void setup() { gt_setup(); }
-void loop()  { gt_loop(); }
+void loop() { gt_loop(); }

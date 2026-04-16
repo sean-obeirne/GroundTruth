@@ -10,29 +10,31 @@
 #include <stdbool.h>
 
 /* Logical pin IDs used in the serial protocol */
-typedef enum {
-    PIN_P1 = 0,  /* Probe 1: A0 / PF7 */
-    PIN_P2,      /* Probe 2: A1 / PF6 */
-    PIN_P3,      /* Probe 3: A2 / PF5 */
-    PIN_O1,      /* Output 1: D6 / PD7 */
-    PIN_O2,      /* Output 2: D5 / PC6 */
-    PIN_R3V,     /* 3.3V rail sense: A3 / PF4 */
-    PIN_R5V,     /* 5V rail sense: A4 / PF1 */
+typedef enum
+{
+    PIN_P1 = 0, /* Probe 1: A0 / PF7 */
+    PIN_P2,     /* Probe 2: A1 / PF6 */
+    PIN_P3,     /* Probe 3: A2 / PF5 */
+    PIN_O1,     /* Output 1: D6 / PD7 */
+    PIN_O2,     /* Output 2: D5 / PC6 */
+    PIN_R3V,    /* 3.3V rail sense: A3 / PF4 */
+    PIN_R5V,    /* 5V rail sense: A4 / PF1 */
     PIN_COUNT,
     PIN_INVALID = 0xFF
 } pin_id_t;
 
 /* Pin capability flags */
-#define PIN_CAP_INPUT   0x01
-#define PIN_CAP_OUTPUT  0x02
-#define PIN_CAP_ANALOG  0x04
+#define PIN_CAP_INPUT 0x01
+#define PIN_CAP_OUTPUT 0x02
+#define PIN_CAP_ANALOG 0x04
 
-typedef struct {
+typedef struct
+{
     volatile uint8_t *ddr;
     volatile uint8_t *port;
     volatile uint8_t *pin_reg;
     uint8_t bit;
-    uint8_t adc_channel;  /* 0xFF if no ADC */
+    uint8_t adc_channel; /* 0xFF if no ADC */
     uint8_t caps;
     const char *name;
 } pin_def_t;

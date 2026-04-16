@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	gtserial "github.com/seanvelasco/groundtruth/serial"
 	"github.com/seanvelasco/groundtruth/protocol"
+	gtserial "github.com/seanvelasco/groundtruth/serial"
 )
 
 // Context holds shared state for all commands.
