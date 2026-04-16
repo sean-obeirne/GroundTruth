@@ -1,0 +1,16 @@
+# Build artifacts
+firmware/build/
+host/gt
+
+# Go
+host/vendor/
+
+# IDE
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
